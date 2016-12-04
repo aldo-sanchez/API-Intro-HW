@@ -7,8 +7,21 @@ body{
 
 .btn-flat{
   color: lightgray;
+  padding-left: 3px;
+  padding-right: 10px;
+  margin-right: 5px;
+  margin: 0 5px 0 0;
+  
 }
 
+.test{
+  border-right: solid 2px red;
+}
+
+
+.closeButton :hover{
+  color: red;
+}
 /*#submitButton{
   margin-top: 90px;
 }*/
@@ -18,7 +31,3 @@ body{
      of the button to still show through. */
       background-color: rgba(69, 48, 178, 0.7);
     }
- 
- .btn-flat:hover{
-   color: lightgray;
- }

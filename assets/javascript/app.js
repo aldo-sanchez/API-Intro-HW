@@ -9,13 +9,32 @@ function renderButtons(){
   var buttonsCol = $('#buttonsCol');
   buttonsCol.empty();
   for(i = 0; i < topics.length; i++){
-    button = $('<a></a>');
-    button.attr({
-      class: 'waves-effect waves-mine btn-flat',
+    closeButton = $('<button></button>');
+    closeButton.attr({
+      class: 'btn-floating transparent closeButton'
+    });
+
+    closeIcon = $('<i></i>');
+    closeIcon.attr({
+      class: 'material-icons closeButton',
+      id: 'close' + i
+    });
+    closeIcon.text('close');
+    closeIcon.appendTo(closeButton);
+
+    gifButton = $('<button></button>');
+    gifButton.attr({
+      class: 'waves-effect transparent waves-mine btn-flat gifButton',
       id: 'button'+i,
     });
-    button.text(topics[i]);
-    button.appendTo(buttonsCol);
+
+    if(i != topics.length-1){
+      gifButton.addClass('test')
+    }
+
+    gifButton.text(topics[i]);
+    closeButton.appendTo(buttonsCol);
+    gifButton.appendTo(buttonsCol);
   };
 };
 
@@ -29,6 +48,15 @@ $('#addButton').on('click', function(){
   renderButtons();
   return false
 });
+
+$(document).on('click', '.closeButton', function(){
+  var buttonToRemove = $(this).attr('id');
+  index = buttonToRemove.charAt(5);
+  console.log(buttonToRemove);
+  console.log(index);
+  topics.splice(parseInt(index),1);
+  renderButtons();
+})
 
 
 
