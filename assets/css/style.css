@@ -8,6 +8,11 @@ body{
 .btn-flat{
   color: lightgray;
 }
+
+/*#submitButton{
+  margin-top: 90px;
+}*/
+
 .waves-effect.waves-mine .waves-ripple {
      /* The alpha value allows the text and background color
      of the button to still show through. */
