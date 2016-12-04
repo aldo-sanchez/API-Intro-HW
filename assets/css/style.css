@@ -1,0 +1,19 @@
+body{
+  /*background-image: url("../images/hexabump_@2X.png");*/
+  background-image: url("../images/dark_mosaic.png");
+  color: lightgray;
+  /*font-family: 'Space Mono', monospace;*/
+}
+
+.btn-flat{
+  color: lightgray;
+}
+.waves-effect.waves-mine .waves-ripple {
+     /* The alpha value allows the text and background color
+     of the button to still show through. */
+      background-color: rgba(69, 48, 178, 0.7);
+    }
+ 
+ .btn-flat:hover{
+   color: lightgray;
+ }
