@@ -7,7 +7,7 @@ renderButtons();
 function renderButtons(){
   var buttonsRow = $('#buttonsRow');
   var buttonsCol = $('#buttonsCol');
-
+  buttonsCol.empty();
   for(i = 0; i < topics.length; i++){
     button = $('<a></a>');
     button.attr({
@@ -18,6 +18,17 @@ function renderButtons(){
     button.appendTo(buttonsCol);
   };
 };
+
+$('#addButton').on('click', function(){
+  var addNew = $('#addNew');
+  var newTopic = addNew.val().trim();
+  topics.push(newTopic);
+  console.log(newTopic);
+  console.log(topics);
+  addNew.val('');
+  renderButtons();
+  return false
+});
 
 
 

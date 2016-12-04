@@ -7,69 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--link tags-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-<script src="https://use.fontawesome.com/7fa3cf30ae.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://use.fontawesome.com/7fa3cf30ae.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
   </head>
   <body>
 
     <div class="container">
+      
       <div class="row">
         <div class="col m6">
           <h1>GIF Site</h1>
         </div>
-        <div class="col m3">
-          <a class="waves-effect waves-teal btn-flat">Button</a>
-        </div>
-        <div class="col m3">
-          <h1>Test2</h1>
-        </div>
       </div>
+
       <div class="row" id="buttonsRow">
         <div class="col m12" id="buttonsCol">
         </div>
       </div>
 
-      <div class="row">
-        <form class="col m12">
-          <div class="input-field col m11">
+      <div class="row" id="inputRow">
+        <form class="col m12" id="inputCol">
+          <div class="input-field col m11" id="input">
            <input id="addNew" type="text" class="validate"> 
            <label for="addNew">Add New GIF Button</label>
            
           </div>
-          <div class="col m1" id="submitButton">
+          <div class="col m1" id="addButton">
            <button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action"><i class="material-icons">add</i></button>
           </div>
         </form>
         
       </div>
-
-      <!--<div class="row">
-        
-        <form class="form-inline">
-            <div class="form-group">
-              <label for="addButton"></label>
-              <input type="text" class="form-control input-lg" id="addButton" placeholder="Example input">
-            </div>
-            <button class="testbtn" type="submit">Add</button> 
-        </form>
-        
-      </div>
-      
-    </div>-->
     </div>
 
-      
-    
-    
     <!--scripts-->
     <!--jquery-->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
