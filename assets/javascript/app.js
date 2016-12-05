@@ -1,8 +1,10 @@
 console.log("Hello World!");
 
-var topics = ['earth', 'mars', 'saturn'];
+var topics = ['earth space', 'mars space', 'saturn space'];
+var selectedTopic;
 
 $(document).ready(function(){
+  $('select').material_select();
   renderButtons();
 })
 
@@ -40,10 +42,13 @@ function renderButtons(){
   };
 };
 
-function renderGifs(selectedTopic){
+function renderGifs(){
+  
   var apiKey = 'dc6zaTOxFJmzC';
   var numCol = 4;
-  var limit = 12;
+  var limitInput = $('#resultLimit')
+  var limit = limitInput.val();
+  console.log(limit);
 
   var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + selectedTopic + '&api_key=' + apiKey + '&limit=' + limit;
   console.log(queryURL);
@@ -85,11 +90,12 @@ function renderGifs(selectedTopic){
           var dataAnimate = results[i].images.fixed_width.url;
           var dataState = 'still';
 
-          var ratingText = $('<h3></h3>');
+          var ratingText = $('<h5></h5>');
           ratingText.attr({
             class: 'gifRating',
             id: 'gifRating'+ i
           });
+          ratingText.text('rated: ' + rating);
 
           var gifImage = $('<img>');
           gifImage.attr({
@@ -107,6 +113,7 @@ function renderGifs(selectedTopic){
           });
           
           gifDiv.appendTo(gifRow);
+          ratingText.appendTo(gifDiv);
           gifImage.appendTo(gifDiv);
         } else{
           break loopCol;          
@@ -133,19 +140,26 @@ $('#addButton').on('click', function(){
 
 $(document).on('click', '.gifButton', function(){
   $('.gifCol').empty();
-  var selectedTopic = $(this).attr('id');
+  selectedTopic = $(this).attr('id');
   selectedTopic = topics[parseInt(selectedTopic.substring(6))];
   selectedTopic = selectedTopic.split(' ').join('+');
-  renderGifs(selectedTopic);
+  renderGifs();
+  return false
 });
 
 $(document).on('click', '.closeButton', function(){
   var buttonToRemove = $(this).attr('id');
   index = buttonToRemove.substring(5);
-  console.log(buttonToRemove);
-  console.log(index);
+  if (topics[index].split(' ').join('+') == selectedTopic){
+    console.log('in');
+    $('.gifCol').empty();
+    errorText = $('<h3></h3>');
+    errorText.text('You removed the button for these gifs :(');
+    errorText.appendTo('.gifCol');
+  };
   topics.splice(parseInt(index),1);
-  renderButtons();
+  renderButtons();  
+  return false
 });
 
 $(document).on('click', '.gif', function(){
@@ -159,8 +173,7 @@ $(document).on('click', '.gif', function(){
     $(this).attr("src", stillImage);
     $(this).attr("data-state", "still");
   };
-  console.log(state);
-
+  return false
 });
 
 
