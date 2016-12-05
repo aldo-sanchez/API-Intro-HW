@@ -107,15 +107,31 @@ function renderGifs(){
             'data-still': dataStill,
             'data-animate': dataAnimate,
             'data-state': dataState,
-            class: 'gif'
+            class: 'gif',
+            id: 'gif'+ i
           });
 
           var gifDiv = $('<div></div>');
           gifDiv.attr({
-            class: 'col m ' + (numCol-1) + ' gifDiv',
-            id: 'gif'+ i
+            class: 'col m' + (numCol-1) + ' gifDiv',
           });
-          
+
+          var progressDiv = $('<div></div>');
+          progressDiv.attr({
+            class: 'progress',
+            id: 'progressDiv' + i
+          });
+
+
+          var progressType = $('<div></div>')
+          progressType.attr({
+            class: 'indeterminate'
+          });
+
+          progressDiv.hide();
+
+          progressType.appendTo(progressDiv);
+          progressDiv.appendTo(gifDiv);
           gifDiv.appendTo(gifRow);
           ratingText.appendTo(gifDiv);
           gifImage.appendTo(gifDiv);
@@ -168,18 +184,29 @@ $(document).on('click', '.closeButton', function(){
 });
 
 $(document).on('click', '.gif', function(){
+  var index = $(this).attr('id');
+  index = index.substring(3);
+  progressDiv = $('#progressDiv'+index);
   var state = $(this).attr('data-state');
   var animatedImage = $(this).attr("data-animate");
   var stillImage = $(this).attr("data-still");
   if (state == "still"){
+    progressDiv.show();
     $(this).attr("src", animatedImage);
     $(this).attr("data-state", "animate");
+    $(this).on('load',hideProgress(progressDiv));
   } else{
     $(this).attr("src", stillImage);
     $(this).attr("data-state", "still");
   };
   return false
 });
+
+function hideProgress(progressDiv){
+  console.log('im in');
+  console.log(progressDiv)
+  progressDiv.hide();
+}
 
 
 
