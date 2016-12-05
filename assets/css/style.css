@@ -18,6 +18,10 @@ body{
   border-right: solid 2px red;
 }
 
+.gif{
+  text-align: center;
+}
+
 
 .closeButton :hover{
   color: red;

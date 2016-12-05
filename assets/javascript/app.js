@@ -6,7 +6,6 @@ $(document).ready(function(){
   renderButtons();
 })
 
-
 function renderButtons(){
   var buttonsRow = $('#buttonsRow');
   var buttonsCol = $('#buttonsCol');
@@ -45,8 +44,6 @@ function renderGifs(selectedTopic){
   var apiKey = 'dc6zaTOxFJmzC';
   var numCol = 4;
   var limit = 12;
-
-
 
   var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + selectedTopic + '&api_key=' + apiKey + '&limit=' + limit;
   console.log(queryURL);
@@ -99,29 +96,26 @@ function renderGifs(selectedTopic){
             src: dataStill,
             'data-still': dataStill,
             'data-animate': dataAnimate,
-            'data-state': dataState
+            'data-state': dataState,
+            class: 'gif'
           });
 
           var gifDiv = $('<div></div>');
           gifDiv.attr({
-            class: 'col m ' + (numCol-1) + ' gif',
+            class: 'col m ' + (numCol-1) + ' gifDiv',
             id: 'gif'+ i
           });
           
           gifDiv.appendTo(gifRow);
           gifImage.appendTo(gifDiv);
-          }
-        else{
-          console.log("continue", k);
+        } else{
           break loopCol;          
-        }
+        };
           k++;
-      }
-    }
+      };
+    };
   });
 };
-
-
 
 // event listeners
 $('#addButton').on('click', function(){
@@ -152,7 +146,22 @@ $(document).on('click', '.closeButton', function(){
   console.log(index);
   topics.splice(parseInt(index),1);
   renderButtons();
-})
+});
+
+$(document).on('click', '.gif', function(){
+  var state = $(this).attr('data-state');
+  var animatedImage = $(this).attr("data-animate");
+  var stillImage = $(this).attr("data-still");
+  if (state == "still"){
+    $(this).attr("src", animatedImage);
+    $(this).attr("data-state", "animate");
+  } else{
+    $(this).attr("src", stillImage);
+    $(this).attr("data-state", "still");
+  };
+  console.log(state);
+
+});
 
 
 
