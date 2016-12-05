@@ -4,8 +4,10 @@ var topics = ['earth space', 'mars space', 'saturn space'];
 var selectedTopic;
 
 $(document).ready(function(){
+  $('#gifInstruction').hide();
   $('select').material_select();
   renderButtons();
+
 })
 
 function renderButtons(){
@@ -43,11 +45,13 @@ function renderButtons(){
 };
 
 function renderGifs(){
-  
   var apiKey = 'dc6zaTOxFJmzC';
   var numCol = 4;
   var limitInput = $('#resultLimit')
   var limit = limitInput.val();
+  if (limit == null){
+    return false
+  }
   console.log(limit);
 
   var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + selectedTopic + '&api_key=' + apiKey + '&limit=' + limit;
@@ -122,6 +126,7 @@ function renderGifs(){
       };
     };
   });
+  $('#gifInstruction').show();
 };
 
 // event listeners
@@ -151,7 +156,7 @@ $(document).on('click', '.closeButton', function(){
   var buttonToRemove = $(this).attr('id');
   index = buttonToRemove.substring(5);
   if (topics[index].split(' ').join('+') == selectedTopic){
-    console.log('in');
+    $('#gifInstruction').hide();
     $('.gifCol').empty();
     errorText = $('<h3></h3>');
     errorText.text('You removed the button for these gifs :(');

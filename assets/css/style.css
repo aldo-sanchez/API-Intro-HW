@@ -44,5 +44,12 @@ body{
 
 ul.dropdown-content.select-dropdown li span {
   color: #00c853; 
-  background-color:  #080808;
+};
+
+#gifInstruction.show{
+  display: block;
+}
+
+#gifInstruction.hidden{
+  display: none;
 }
