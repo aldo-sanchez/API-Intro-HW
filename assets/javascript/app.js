@@ -41,31 +41,11 @@ function renderButtons(){
   };
 };
 
-
-
-// event listeners
-$('#addButton').on('click', function(){
-  var addNew = $('#addNew');
-  if(addNew.val() != ''){
-    var newTopic = addNew.val().trim();
-    topics.push(newTopic);
-    console.log(newTopic);
-    console.log(topics);
-    addNew.val('');
-    renderButtons();
-  }
-  return false
-});
-
-$(document).on('click', '.gifButton', function(){
-  $('.gifCol').empty();
-  var selectedTopic = $(this).attr('id');
-  selectedTopic = topics[parseInt(selectedTopic.substring(6))];
-  selectedTopic = selectedTopic.split(' ').join('+');
-  console.log(selectedTopic);
-
+function renderGifs(selectedTopic){
   var apiKey = 'dc6zaTOxFJmzC';
-  var limit = 10;
+  var numCol = 4;
+  var limit = 12;
+
 
 
   var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + selectedTopic + '&api_key=' + apiKey + '&limit=' + limit;
@@ -77,27 +57,31 @@ $(document).on('click', '.gifButton', function(){
   })
   .done(function(response){
     var results = response.data;
+    if (results.length == 0){
+      errorText = $('<h3></h3>');
+      errorText.text('Sorry! No GIFs were found...Try something else');
+      errorText.appendTo('.gifCol');
+    }
+    var numRows = limit/numCol;
 
-    var numRows = limit/3;
-    if (limit % 3 > 0){
-      numRows = Math.floor(numRows)+1;
+    if (limit % numCol > 0){
+      numRows = Math.floor(numRows)+numCol;
     }
 
     k = 0;
-  loop1:
+  loopRow:
     for (j = 0; j < numRows; j++){
-      console.log("did this")
       var gifRow = $('<div></div>');
       gifRow.attr({
         class: "row",
         id: 'gifRow' + j
       });
       gifRow.appendTo('.gifCol');
-    loop2:
+    loopCol:
       for (i = 1; i < results.length; i++){
-        if (i % 3 != 0){
+        if (i % numCol != 0){
           i = k;
-          console.log(i)
+          // console.log(i)
           // console.log(k)
           var rating = results[i].rating;
           var dataStill = results[i].images.fixed_width_still.url;
@@ -120,7 +104,7 @@ $(document).on('click', '.gifButton', function(){
 
           var gifDiv = $('<div></div>');
           gifDiv.attr({
-            class: 'col m4 gif',
+            class: 'col m ' + (numCol-1) + ' gif',
             id: 'gif'+ i
           });
           
@@ -129,12 +113,36 @@ $(document).on('click', '.gifButton', function(){
           }
         else{
           console.log("continue", k);
-          break loop2;          
+          break loopCol;          
         }
           k++;
       }
     }
   });
+};
+
+
+
+// event listeners
+$('#addButton').on('click', function(){
+  var addNew = $('#addNew');
+  if(addNew.val() != ''){
+    var newTopic = addNew.val().trim();
+    topics.push(newTopic);
+    console.log(newTopic);
+    console.log(topics);
+    addNew.val('');
+    renderButtons();
+  }
+  return false
+});
+
+$(document).on('click', '.gifButton', function(){
+  $('.gifCol').empty();
+  var selectedTopic = $(this).attr('id');
+  selectedTopic = topics[parseInt(selectedTopic.substring(6))];
+  selectedTopic = selectedTopic.split(' ').join('+');
+  renderGifs(selectedTopic);
 });
 
 $(document).on('click', '.closeButton', function(){
