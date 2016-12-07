@@ -5,6 +5,17 @@ body{
   /*font-family: 'Space Mono', monospace;*/
 }
 
+p{
+  font-size: 14px;
+  line-height: 20px;
+  opacity: .35;
+  text-align: left;
+}
+
+/*.animated {
+  border: 2px solid red;
+}*/
+
 .btn-flat{
   color: lightgray;
   padding-left: 3px;

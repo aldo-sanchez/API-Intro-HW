@@ -94,7 +94,7 @@ function renderGifs(){
           var dataAnimate = results[i].images.fixed_width.url;
           var dataState = 'still';
 
-          var ratingText = $('<h5></h5>');
+          var ratingText = $('<p></p>');
           ratingText.attr({
             class: 'gifRating',
             id: 'gifRating'+ i
@@ -159,7 +159,8 @@ $('#addButton').on('click', function(){
   return false
 });
 
-$(document).on('click', '.gifButton', function(){
+$(document).on('click', '.gifButton', function(addEvent){
+  addEvent.preventDefault();
   $('.gifCol').empty();
   selectedTopic = $(this).attr('id');
   selectedTopic = topics[parseInt(selectedTopic.substring(6))];
@@ -207,7 +208,3 @@ function hideProgress(progressDiv){
   console.log(progressDiv)
   progressDiv.hide();
 }
-
-
-
-
