@@ -12,9 +12,23 @@ p{
   text-align: left;
 }
 
-/*.animated {
-  border: 2px solid red;
-}*/
+.gif{
+  border: 2px solid transparent;
+  -webkit-transition: border-color .5s linear; /* Saf3.2+, Chrome */
+     -moz-transition: border-color .5s linear; /* FF3.7+ */
+       -o-transition: border-color .5s linear; /* Opera 10.5 */
+          transition: border-color .5s linear;
+}
+
+.animatedSelection {
+  border: 2px solid rgba(0, 200, 83, .5);
+  
+  -webkit-transition: border-color .5s linear; /* Saf3.2+, Chrome */
+     -moz-transition: border-color .5s linear; /* FF3.7+ */
+       -o-transition: border-color .5s linear; /* Opera 10.5 */
+          transition: border-color .5s linear;
+  /*border: 2px solid red;*/
+}
 
 .btn-flat{
   color: lightgray;

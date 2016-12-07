@@ -195,10 +195,12 @@ $(document).on('click', '.gif', function(){
     progressDiv.show();
     $(this).attr("src", animatedImage);
     $(this).attr("data-state", "animate");
+    $(this).toggleClass("animatedSelection");
     $(this).on('load',hideProgress(progressDiv));
   } else{
     $(this).attr("src", stillImage);
     $(this).attr("data-state", "still");
+    $(this).toggleClass("animatedSelection");
   };
   return false
 });
